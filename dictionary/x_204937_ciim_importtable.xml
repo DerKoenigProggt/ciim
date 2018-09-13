@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Importtable" max_length="40" name="x_204937_ciim_importtable" type="collection">
+        <element default="0" label="errCounter" max_length="40" name="errcounter" type="integer"/>
+        <element label="integrated" max_length="40" name="integrated" type="boolean"/>
+        <element label="Last Message" max_length="10000" name="lastmessage" type="string_full_utf8"/>
+        <element label="strJSON" max_length="1000000" name="strjson" type="string_full_utf8"/>
+    </element>
+</database>

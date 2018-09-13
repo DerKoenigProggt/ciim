@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="integrated" label="Integrated" language="en" table="x_204937_ciim_importtable">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>integrated</element>
+            <help/>
+            <hint/>
+            <label>Integrated</label>
+            <language>en</language>
+            <name>x_204937_ciim_importtable</name>
+            <plural>Integrated</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-09-10 08:56:42</sys_created_on>
+            <sys_id>91b4b3804f246300700801bda310c78e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Integrated</sys_name>
+            <sys_package display_value="CI Import Manager" source="x_204937_ciim">9910e1e74f502300700801bda310c758</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="CI Import Manager">9910e1e74f502300700801bda310c758</sys_scope>
+            <sys_update_name>sys_documentation_x_204937_ciim_importtable_integrated_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-09-10 08:56:42</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_web_service">
+    <sys_web_service action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <function_name>RetrieveCI</function_name>
+        <name>RetrieveCI</name>
+        <scoped_name>x_204937_ciim_RetrieveCI</scoped_name>
+        <script><![CDATA[(function scriptedWebServiceOperation(request, response) {
+
+	var syslog = new SysLog();
+	
+	// request.ciCollection ist ein XML
+	// es wird ein JSON benötigt -> konvertiere
+	var objJSON = gs.xmlToJSON(request.ciCollection);
+	
+	// Konvertierung fehlgeschlagen. Es wurde nichts oder
+	// etwas Falsches übergeben
+	if ((objJSON === null) || (typeof(objJSON.ciCollection) === undefined))
+	{
+		syslog.addInfoMessage("SOAP-Request contains no " 
+							  + "or a non-valid XML-Body");
+		response.setStatus(400);
+		response.setBody( {error:"Valid XML missing"} );
+		
+		return;
+	}	
+
+	// Verarbeite das JSON und speichere alles
+	var collectCIs = new CollectCI();
+	collectCIs.collect(objJSON);
+	
+	// Gebe den HTTP-Status 202 = Accepted zurück
+	response.setStatus(202);
+
+})(request, response);]]></script>
+        <short_description/>
+        <sys_class_name>sys_web_service</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-09-13 06:33:45</sys_created_on>
+        <sys_id>05903e814f202300700801bda310c7d7</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>RetrieveCI</sys_name>
+        <sys_package display_value="CI Import Manager" source="x_204937_ciim">9910e1e74f502300700801bda310c758</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CI Import Manager">9910e1e74f502300700801bda310c758</sys_scope>
+        <sys_update_name>sys_web_service_05903e814f202300700801bda310c7d7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-09-13 07:05:55</sys_updated_on>
+        <wsdl>https://dev50626.service-now.com/x_204937_ciim_RetrieveCI.do?WSDL</wsdl>
+        <wsdl_compliance>false</wsdl_compliance>
+    </sys_web_service>
+</record_update>
