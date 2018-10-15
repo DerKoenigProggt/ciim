@@ -25,6 +25,7 @@ ErrorHandler.prototype = {
 		
 		this.scope = "x_204937_ciim";
 		this.name = "CI Import Manager";
+		syslog.addDebugMessage("incidentTemplate = " + this.scope + "." + "incidentTemplate" );
 		this.incidentTemplate = gs.getProperty(this.scope + "." + "incidentTemplate");
 		
 		// Zuerst muss die sys_id des Templates ermittelt werden
@@ -39,6 +40,8 @@ ErrorHandler.prototype = {
 		
 		// sys_id ermitteln und Template laden
 		var sysIdTemplate = grTemplate.getValue('sys_id');
+		syslog.addDebugMessage("sysIDincidentTemplate = " + sysIdTemplate );
+		
 		this.incidentTemplate = new GlideTemplate.get(sysIdTemplate);  		
     },
 	
@@ -67,13 +70,13 @@ ErrorHandler.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-09-08 09:26:43</sys_created_on>
         <sys_id>d13861af4f502300700801bda310c719</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>ErrorHandler</sys_name>
         <sys_package display_value="CI Import Manager" source="x_204937_ciim">9910e1e74f502300700801bda310c758</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="CI Import Manager">9910e1e74f502300700801bda310c758</sys_scope>
         <sys_update_name>sys_script_include_d13861af4f502300700801bda310c719</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-09-11 17:53:04</sys_updated_on>
+        <sys_updated_on>2018-09-29 13:07:34</sys_updated_on>
     </sys_script_include>
 </record_update>

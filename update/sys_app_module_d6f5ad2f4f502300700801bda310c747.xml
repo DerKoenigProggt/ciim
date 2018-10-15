@@ -2,7 +2,7 @@
 <record_update sys_domain="global" table="sys_app_module">
     <sys_app_module action="INSERT_OR_UPDATE">
         <active>true</active>
-        <application/>
+        <application display_value="CI Import Manager">cb15a12f4f502300700801bda310c78f</application>
         <assessment/>
         <content_page/>
         <device_type/>
@@ -26,7 +26,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>d6f5ad2f4f502300700801bda310c747</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Configuration</sys_name>
         <sys_overrides/>
         <sys_package display_value="CI Import Manager" source="x_204937_ciim">9910e1e74f502300700801bda310c758</sys_package>
@@ -34,7 +34,7 @@
         <sys_scope display_value="CI Import Manager">9910e1e74f502300700801bda310c758</sys_scope>
         <sys_update_name>sys_app_module_d6f5ad2f4f502300700801bda310c747</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-09-08 09:17:51</sys_updated_on>
+        <sys_updated_on>2018-09-24 08:03:04</sys_updated_on>
         <timeline_page/>
         <title>Configuration</title>
         <uncancelable>false</uncancelable>

@@ -30,16 +30,18 @@ var ProcessCI = Class.create();
 ProcessCI.prototype = {
     initialize: function() {
 
-		// In scoped Apps wird ein Plugin "IdentificationEngineScriptableApi" 
-		// benötigt, welches im System aktiv sein muss. Wenn es aktiv ist
+		// In scoped Apps wird ein Plugin 
+		// "IdentificationEngineScriptableApi" benötigt, 
+		// welches im System aktiv sein muss. Wenn es aktiv ist
 		// gibt es eine Variable/Objekt namens sn_cmdb
-		syslog.addDebugMessage("Prüfe System ob Plugin 'Configuration " 
-							   + "Management For Scoped Apps (CMDB)' aktiv ist" );
+		syslog.addDebugMessage("Prüfe System ob Plugin " + 
+				"'Configuration Management For Scoped Apps (CMDB)'"
+				 + "aktiv ist" );
 		
         if (typeof sn_cmdb === "undefined") 
 		{	
-			syslog.addErrorMessage("Missing Plugin 'Configuration Management" +
-								   " For Scoped Apps (CMDB)'");
+			syslog.addErrorMessage("Missing Plugin " +
+				"'Configuration Management For Scoped Apps (CMDB)'");
 		
 			throw "critical error: Missing plugin sn_cmdb";
         }
@@ -47,13 +49,16 @@ ProcessCI.prototype = {
 		this.scope = "x_204937_ciim";
 		this.name = "CI Import Manager";
 		this.importTable = this.scope + "_" + "importtable";
-		this.maxTries = gs.getProperty(this.scope + "." + "maxTriesToError");
-		this.discovery_source = gs.getProperty(this.scope + "." + 'discovery_source');
+		this.maxTries = gs.getProperty(this.scope + 
+									   "." + "maxTriesToError");
+		this.discovery_source = gs.getProperty(this.scope + 
+									   "." + 'discovery_source');
 		
 		//Importtabelle initialisieren
         this.gr = new GlideRecord(this.importTable);
         if (!this.gr.isValid()) {
-			syslog.addErrorMessage("An error occured while opening the import table.");
+			syslog.addErrorMessage("An error occured while" +
+								   " opening the import table.");
 			
 			throw "critical error: Cannot initialize importtable";
         }
@@ -73,7 +78,7 @@ ProcessCI.prototype = {
 
         /* 
 			---- Anpassen der Abfrage ----
-			Nur Datensätze (DS) dessen Fehlerzähler <= [maxTriesToError]
+			Nur Datensätze (DS) dessen Fehlerzähler<=[maxTriesToError]
 			Nur DS, die noch nicht integriert sind
 			Sortiere nach Erstellungsdatum, um ggf. ältere DS durch 
 			neuere zu überschreiben
@@ -88,7 +93,8 @@ ProcessCI.prototype = {
 		// und versuche ihn zu integrieren
 		while (gr.next()) {
 			
-			var result = this._addCI( gr.getValue('strjson') ) ;
+			var result = this._addCI( 
+				gr.getValue('strjson') ) ;
 			
 			gr.lastmessage = result.text;
 			
@@ -102,18 +108,24 @@ ProcessCI.prototype = {
 			}
 			else {
 				
-				var errcounter = parseInt( gr.getValue('errcounter') );
+				var errcounter = parseInt( 
+							gr.getValue('errcounter') );
+				
 				errcounter++;
 				gr.setValue('errcounter', errcounter);
-
-				if (errcounter == (this.maxTries + 1))
+				
+				if (errcounter == this.maxTries)
 				{
+					syslog.addDebugMessage("errcounter = " + errcounter
+						+ " maxTries = " + this.maxTries 
+						+ " überschritten. Erzeuge Incident");
 					// Der Datensatz ist zu oft auf einen Fehler
 					// gelaufen. Melde den Fehler. 
-					var errorMessage = "Input: " + gr.getValue('strjson') + "\n" 
-										+ "result: " + result.text;
+					var errorMessage = "Input: " + 
+						gr.getValue('strjson') + "\n" 
+						+ "result: " + result.text;
 					
-					this.ErrorHandler.error(errorMessage);
+					this.errorHandler.error(errorMessage);
 				}
 				
 			}
@@ -224,7 +236,7 @@ ProcessCI.prototype = {
 	_getGrFromSysId: function(className, sysId){
 		
 		syslog.addDebugMessage("Ermittle GlideRecord für sysid: " 
-							   + sysId + " und className: " + className);
+						+ sysId + " und className: " + className);
 		var gr = new GlideRecord(className);
 		gr.addQuery("sys_id", sysId);
 		gr.query();
@@ -239,13 +251,13 @@ ProcessCI.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-09-08 09:25:29</sys_created_on>
         <sys_id>96c7e92f4f502300700801bda310c72a</sys_id>
-        <sys_mod_count>54</sys_mod_count>
+        <sys_mod_count>62</sys_mod_count>
         <sys_name>ProcessCI</sys_name>
         <sys_package display_value="CI Import Manager" source="x_204937_ciim">9910e1e74f502300700801bda310c758</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="CI Import Manager">9910e1e74f502300700801bda310c758</sys_scope>
         <sys_update_name>sys_script_include_96c7e92f4f502300700801bda310c72a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-09-11 17:52:51</sys_updated_on>
+        <sys_updated_on>2018-09-29 13:15:15</sys_updated_on>
     </sys_script_include>
 </record_update>
